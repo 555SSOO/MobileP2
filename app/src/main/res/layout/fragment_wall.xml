@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fragment_wall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         />
+    <Button
+        android:id="@+id/btn_fragment_wall_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <EditText
+        android:id="@+id/et_fragment_wall"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints="@string/filter_hint"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/btn_fragment_wall_add"/>
+
+    <Button
+        android:id="@+id/btn_fragment_wall_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/et_fragment_wall"
+        />
+
+
+</RelativeLayout>

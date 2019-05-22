@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class ScheduleFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
     private Spinner mCategorySpinner;
 
 
-    public static ScheduleFragment newInstance() {
-        return new ScheduleFragment();
+    public static ChatFragment newInstance() {
+        return new ChatFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
 //        EditText expenseNameET = view.findViewById(R.id.et_fragment_first_name);
 //        EditText priceET = view.findViewById(R.id.et_fragment_first_price);

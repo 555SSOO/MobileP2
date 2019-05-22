@@ -3,7 +3,9 @@ package com.example.project2.adapter;
 import android.content.Context;
 
 import com.example.project2.R;
+import com.example.project2.fragment.ChatFragment;
 import com.example.project2.fragment.ScheduleFragment;
+import com.example.project2.fragment.WallFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +35,9 @@ public class SimplePagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return ScheduleFragment.newInstance();
             case 1:
-                return ScheduleFragment.newInstance();
+                return ChatFragment.newInstance();
             case 2:
-                return ScheduleFragment.newInstance();
+                return WallFragment.newInstance();
         }
 
         return null;

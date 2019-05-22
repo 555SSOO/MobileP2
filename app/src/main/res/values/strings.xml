@@ -3,4 +3,9 @@
     <string name="fragment_title_1">Raspored</string>
     <string name="fragment_title_2">Chat</string>
     <string name="fragment_title_3">Wall</string>
+    <string name="search">Trazi</string>
+    <string name="filter_hint">Unesi tekst za pretragu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
