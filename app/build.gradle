@@ -15,9 +15,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
     }
 }
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -37,6 +40,7 @@ dependencies {
     // Room
     implementation 'androidx.room:room-runtime:2.1.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
     annotationProcessor 'androidx.room:room-compiler:2.1.0-beta01'
 
     // Retrofit
@@ -63,3 +67,4 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services' // Samo ako koristite firebase i imate google-services.json fajl u app folderu
+
