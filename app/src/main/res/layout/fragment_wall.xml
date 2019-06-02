@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:autofillHints="@string/filter_hint"
+        android:autofillHints="@string/filter_hint_professor_class_name"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/btn_fragment_wall_add"/>
 

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginStart="10dp"
         android:layout_alignParentStart="true"
         />
 
@@ -20,21 +21,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_toEndOf="@+id/sp_fragment_schedule_group"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fragment_schedule"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/sp_fragment_schedule_group" />
+        android:layout_below="@+id/sp_fragment_schedule_group"
+        android:layout_above="@+id/et_fragment_schedule_filter"/>
 
     <EditText
         android:id="@+id/et_fragment_schedule_filter"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
-        android:autofillHints="@string/filter_hint"
+        android:hint="@string/filter_hint_professor_class_name"
         android:layout_alignParentBottom="true"/>
 
     <Button
@@ -46,6 +50,7 @@
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
         />
 
 </RelativeLayout>
