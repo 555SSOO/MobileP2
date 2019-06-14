@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.project2.R;
 import com.example.project2.adapter.ScheduleAdapter;
+import com.example.project2.model.ScheduleEntryFilter;
 import com.example.project2.viewmodel.ScheduleViewModel;
 
 import androidx.annotation.NonNull;
@@ -23,6 +27,8 @@ public class ScheduleFragment extends Fragment {
     private ScheduleViewModel scheduleViewModel;
     private ScheduleAdapter scheduleAdapter;
     private RecyclerView scheduleRv;
+    private Spinner daySpinner, groupSpinner;
+    EditText filterText;
 
     public static ScheduleFragment newInstance() {
         return new ScheduleFragment();
@@ -40,6 +46,7 @@ public class ScheduleFragment extends Fragment {
     private void initUi(View view) {
         initSpinners(view);
         initRecycler(view);
+        initFilter(view);
     }
 
     private void initViewModel() {
@@ -47,9 +54,9 @@ public class ScheduleFragment extends Fragment {
         scheduleViewModel.getScheduleEntries().observe(this,
                 resource -> {});
         scheduleViewModel.getFilteredScheduleEntries().observe(this,
-                movieEntities -> scheduleAdapter.setData(movieEntities));
+                scheduleEntryEntities -> scheduleAdapter.setData(scheduleEntryEntities));
         scheduleViewModel.getAllScheduleEntries().observe(this,
-                movieEntities -> scheduleAdapter.setData(movieEntities));
+                scheduleEntryEntities -> scheduleAdapter.setData(scheduleEntryEntities));
     }
 
     private void initRecycler(View view) {
@@ -69,18 +76,67 @@ public class ScheduleFragment extends Fragment {
 
     private void initSpinners(View view){
         // Init day spinner
-        Spinner daySpinner = view.findViewById(R.id.sp_fragment_schedule_day);
+        daySpinner = view.findViewById(R.id.sp_fragment_schedule_day);
         ArrayAdapter<CharSequence> daySpinnerAdapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.days_array, android.R.layout.simple_spinner_item);
         daySpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         daySpinner.setAdapter(daySpinnerAdapter);
+        daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setFilter();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         // Init groups spinner
-        Spinner groupSpinner = view.findViewById(R.id.sp_fragment_schedule_group);
+        groupSpinner = view.findViewById(R.id.sp_fragment_schedule_group);
         ArrayAdapter<CharSequence> groupSpinnerAdapter = ArrayAdapter.createFromResource(view.getContext(),
                 R.array.groups_array, android.R.layout.simple_spinner_item);
         groupSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         groupSpinner.setAdapter(groupSpinnerAdapter);
+        groupSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setFilter();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
     }
+
+    private void initFilter(View view){
+
+        Button filterButton = view.findViewById(R.id.btn_fragment_schedule_filter);
+        filterText = view.findViewById(R.id.et_fragment_schedule_filter);
+        filterButton.setOnClickListener(v -> {
+            setFilter();
+        });
+
+
+    }
+
+    private void setFilter(){
+        String group = groupSpinner.getSelectedItem().toString();
+        if(group.equalsIgnoreCase("GROUPS")){
+            group = "";
+        }
+        String day = daySpinner.getSelectedItem().toString();
+        if(day.equalsIgnoreCase("DAYS")){
+            day = "";
+        }
+        String professorOrClassName = filterText.getText().toString();
+//        if(professorOrClassName.equalsIgnoreCase("")){
+//            professorOrClassName = null;
+//        }
+        ScheduleEntryFilter filter = new ScheduleEntryFilter(professorOrClassName, professorOrClassName, day, group, "");
+        scheduleViewModel.setFilter(filter);
+    }
+
 
 }

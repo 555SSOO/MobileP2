@@ -1,11 +1,14 @@
 package com.example.project2.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.project2.R;
+import com.example.project2.activity.ScheduleDetailsActivity;
 import com.example.project2.repository.db.entity.ScheduleEntryEntity;
 import com.example.project2.util.ScheduleEntryDiffCallback;
 
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ScheduleHolder> {
 
     private List<ScheduleEntryEntity> dataSet;
+    public Context c;
 //    private OnItemClickedListener onItemClickedListener;
 
     public ScheduleAdapter() {
@@ -48,7 +52,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
         return dataSet.size();
     }
 
-    public void setData(List<ScheduleEntryEntity> scheduleEntries){
+    public void setData(List<ScheduleEntryEntity> scheduleEntries) {
         ScheduleEntryDiffCallback callback = new ScheduleEntryDiffCallback(dataSet, scheduleEntries);
         DiffUtil.DiffResult result = DiffUtil.calculateDiff(callback);
         dataSet.clear();
@@ -73,16 +77,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Schedu
             groupTv = itemView.findViewById(R.id.tv_list_item_groups);
             timeTv = itemView.findViewById(R.id.tv_list_item_time);
 
-//            mSeeMoreBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    if (mOnItemClickedListener != null && position != RecyclerView.NO_POSITION) {
-//                        MovieEntity movieEntity = mDataSet.get(position);
-//                        mOnItemClickedListener.onItemClicked(movieEntity);
-//                    }
-//                }
-//            });
+            classNameTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(c, ScheduleDetailsActivity.class);
+                    intent.putExtra(ScheduleDetailsActivity.ASD, classNameTv.getText().toString());
+                    c.startActivity(intent);
+                }
+            });
         }
     }
 

@@ -28,10 +28,9 @@ public class ScheduleEntryDiffCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-//        ScheduleEntryEntity oldMovie = oldList.get(oldItemPosition);
-//        ScheduleEntryEntity newMovie = newList.get(newItemPosition);
-//        return oldMovie.getId().equals(newMovie.getId());
-        return areContentsTheSame(oldItemPosition, newItemPosition);
+        ScheduleEntryEntity oldScheduleEntry = oldList.get(oldItemPosition);
+        ScheduleEntryEntity newScheduleEntry = newList.get(newItemPosition);
+        return oldScheduleEntry.getId().equals(newScheduleEntry.getId());
     }
 
     @Override

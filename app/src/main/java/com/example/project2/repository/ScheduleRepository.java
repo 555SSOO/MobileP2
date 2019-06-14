@@ -39,7 +39,7 @@ public class ScheduleRepository {
         mExecutorService = Executors.newCachedThreadPool();
     }
 
-    public LiveData<Resource<Void>> getSchedule(){
+    public LiveData<Resource<Void>> getSchedule() {
         scheduleApi.getSchedule().enqueue(new Callback<List<ScheduleApiModel>>() {
             @Override
             public void onResponse(Call<List<ScheduleApiModel>> call, Response<List<ScheduleApiModel>> response) {
@@ -60,7 +60,7 @@ public class ScheduleRepository {
     }
 
     public LiveData<List<ScheduleEntryEntity>> getFilteredScheduleEntries(ScheduleEntryFilter filter) {
-        return scheduleDao.getFilteredScheduleEntries(filter.getTitle(), filter.getReleaseDate());
+        return scheduleDao.getFilteredScheduleEntries(filter.getClassName(), filter.getProfessor(), filter.getDay(), filter.getGroup(), filter.getClassroom());
     }
 
     public LiveData<List<ScheduleEntryEntity>> getAllScheduleEntries() {
@@ -71,7 +71,7 @@ public class ScheduleRepository {
         return scheduleDao.getScheduleEntryById(id);
     }
 
-    private void notifyResult(boolean isSuccessful){
+    private void notifyResult(boolean isSuccessful) {
         // Since we are storing movies in a database, there is no need to send
         // the response we got from the server to the activity, we'll just wait
         // for the data to be inserted into db, and at that moment all observers observing
@@ -94,7 +94,7 @@ public class ScheduleRepository {
     private List<ScheduleEntryEntity> transformApiModelToEntity(List<ScheduleApiModel> scheduleApiModels) {
         List<ScheduleEntryEntity> scheduleEntryEntities = new ArrayList<>();
 
-        for (ScheduleApiModel scheduleApiModel: scheduleApiModels) {
+        for (ScheduleApiModel scheduleApiModel : scheduleApiModels) {
 
             String className = scheduleApiModel.getClassName();
             String classType = scheduleApiModel.getClassType();
@@ -103,9 +103,6 @@ public class ScheduleRepository {
             String day = scheduleApiModel.getDay();
             String time = scheduleApiModel.getTime();
             String classroom = scheduleApiModel.getClassroom();
-
-//
-//            int rtScore = Integer.parseInt(rtScoreString);
             String uid = Random.getRandomUID();
             ScheduleEntryEntity scheduleEntryEntity = new ScheduleEntryEntity(uid, className, classType, professor, groups, day, time, classroom);
             scheduleEntryEntities.add(scheduleEntryEntity);

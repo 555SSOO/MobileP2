@@ -8,6 +8,8 @@ import com.example.project2.R;
 
 public class ScheduleDetailsActivity extends AppCompatActivity {
 
+    public static String ASD = "ASD";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
